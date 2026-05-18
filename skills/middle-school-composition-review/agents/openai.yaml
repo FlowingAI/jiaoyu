@@ -1,0 +1,3 @@
+display_name: 初中作文三阶批改
+short_description: 阅卷评分、逐段修改示范、完整作文纸打印版。
+default_prompt: 请按“阅卷评分版、逐段修改示范版、完整修改成文版”三步批改这篇初中作文，并在需要时生成可打印 A4 作文纸 PNG/PDF。
