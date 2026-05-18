@@ -7,7 +7,7 @@ metadata:
 
 # 初中作文三阶批改
 
-Use this skill for 初中作文批改、阅卷评分、逐段修改、作文润色、红笔批注图、A4 作文纸打印版, or when the user asks to repeat the workflow developed for “回首是故乡”.
+Use this skill for 初中作文批改、阅卷评分、逐段修改、作文润色、红笔批注图、A4 作文纸打印版, or when the user asks to repeat the 三阶作文批改 workflow.
 
 ## Core Goal
 
@@ -33,7 +33,7 @@ If the image text is unclear, transcribe only the readable parts and state uncer
 
 ## Default Rubric
 
-If the user provides a rubric image, follow it first. For the common rubric used in the “回首是故乡” workflow, treat the table as a **50-point raw rubric**:
+If the user provides a rubric image, follow it first. For the common rubric used in this 三阶作文批改 workflow, treat the table as a **50-point raw rubric**:
 
 - **内容 20分**: 是否符合题意、中心是否突出、内容是否充实、思想感情是否健康真实。
 - **表达 20分**: 是否符合文体要求、结构是否完整、语言是否通顺、字迹是否工整。
@@ -63,7 +63,7 @@ Output as a teacher:
 - Short explanation of why the score is fair
 - 2-4 concrete improvement priorities
 
-For the “回首是故乡” sample reviewed in this workflow, the earlier `47/60` score is a little generous under the 50-point table. A stricter audit is: 内容 `16/20`, 表达 `14-15/20`, 特征 `7/10`, 扣分 `0-1`; 原始分约 `37-38/50`, 折算分约 `44-46/60`, 建议定分 around `45/60`.
+For a typical middle-school narrative that has sincere emotion but thin events, uneven expression, and limited detail, a fair audit under the 50-point table might be: 内容 `16/20`, 表达 `14-15/20`, 特征 `7/10`, 扣分 `0-1`; 原始分约 `37-38/50`, 折算分约 `44-46/60`.
 
 If the user requests images, make a red-pen scoring/comment page or annotate the original image. For long Chinese text, avoid relying on AI image generation for exact text.
 
@@ -121,12 +121,14 @@ Use `scripts/render_composition_pages.py` when a printable complete-essay PNG/PD
 Example command:
 
 ```powershell
-python "C:\Users\XingZeJiangZhi\.agents\skills\middle-school-composition-review\scripts\render_composition_pages.py" `
-  --title "回首是故乡" `
-  --text-file "D:\path\essay.txt" `
-  --out-dir "E:\桌面\初中七下\作文\回首是故乡" `
-  --basename "完整作文_宽版批注" `
-  --comments "开头景中含情，快速点题。|公交、雨、回乡连成一条线，叙事更清楚。|细节写亲情，情感更自然。|结尾照应题目，中心明确。"
+cd "path\to\middle-school-composition-review"
+
+python ".\scripts\render_composition_pages.py" `
+  --title "作文题目示例" `
+  --text-file ".\examples\student_essay.txt" `
+  --out-dir ".\output\composition_review" `
+  --basename "作文修改示范_宽版批注" `
+  --comments "开头景中含情，快速点题。|把时间、地点、人物连成一条线，叙事更清楚。|细节写人物，情感更自然。|结尾照应题目，中心明确。"
 ```
 
 ## Output Naming
