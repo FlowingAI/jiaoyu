@@ -65,7 +65,7 @@ Output as a teacher:
 
 For a typical middle-school narrative that has sincere emotion but thin events, uneven expression, and limited detail, a fair audit under the 50-point table might be: 内容 `16/20`, 表达 `14-15/20`, 特征 `7/10`, 扣分 `0-1`; 原始分约 `37-38/50`, 折算分约 `44-46/60`.
 
-If the user requests images, make red-pen scoring/comment pages or annotate the original images. Match the original page count: 原作文几张纸，生成的同类批注图就用几张纸，不要把多页原文缩成一张图. For long Chinese text, avoid relying on AI image generation for exact text.
+If the user requests images, make red-pen scoring/comment pages or annotate the original images. For original-text annotation pages, match the original page count exactly: 原作文几张纸，原文批注图就用几张纸，不要把多页原文缩成一张图. Add one extra scoring-summary page for 分项分、总分、等级、总评、提分建议、鼓励语. For long Chinese text, avoid relying on AI image generation for exact text.
 
 ### 2. 逐段修改示范版
 
@@ -85,6 +85,8 @@ Prioritize:
 - Ending that echoes the title and theme
 
 For red-pen images, keep comments short. Do not overcrowd the page.
+
+For paragraph-revision images, annotate the original pages one-to-one first, then add one extra 逐段修改示范页. The extra page should contain 原文问题、修改示范、修改好处, because long teaching explanations should not be squeezed onto the original作文纸.
 
 ### 3. 完整修改成文版
 
@@ -112,8 +114,11 @@ For printable pages:
 - Grid line color: light ink-green/gray-green; default `RGB(135,160,145)`.
 - Keep page bright and print-ready.
 - Avoid overlap between body text, red circles/arrows, and comments.
-- Default page-count rule: 原作文几张纸，生成的每一类图片就用几张纸. If the student's original composition has 2 pages, produce 2 images for the scoring/annotation version, 2 images for the paragraph-revision version, and 2 images for the complete polished essay version.
-- Only change the page count when the user explicitly asks for a different layout or when the text physically cannot fit at readable size. If changed, state the reason clearly.
+- Use the student's supplied composition paper as the visual reference. Match its grid count and approximate grid size/color; for common `20×20=400` paper, keep 20 columns and 20 rows rather than inventing a wider grid.
+- Page-count rule:
+  - 阅卷评分版 = 原文页数 + 1 scoring-summary page.
+  - 逐段修改示范版 = 原文页数 + 1 paragraph-revision demonstration page.
+  - 完整修改成文版 = use the student's paper grid capacity. Start from the original page count, but add pages if the polished essay cannot fit at readable size. State the reason, e.g. `修改稿约810字，20×20作文纸两页容量不足，因此完整成文版为3页`.
 
 Use `scripts/render_composition_pages.py` when a printable complete-essay PNG/PDF is needed.
 
@@ -151,7 +156,9 @@ Before final response:
 - The sum of item scores is arithmetically consistent with the raw score.
 - Paragraph revisions preserve the student's material.
 - Complete essay meets the prompt and word-count requirement.
-- Image output matches the original composition's page count unless the user explicitly requested otherwise.
+- Original annotation pages match the original composition's page count one-to-one.
+- Scoring and paragraph-revision outputs include their required extra summary/demonstration page.
+- Complete polished essay uses the student's paper grid count/size as the reference and adds pages when the revised text cannot fit.
 - Printable images/PDF are bright, clear, and not crowded.
 - Red comments teach methods, not just corrections.
 - Final answer lists saved paths and notes any files that could not be overwritten.
