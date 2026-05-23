@@ -65,7 +65,7 @@ Output as a teacher:
 
 For a typical middle-school narrative that has sincere emotion but thin events, uneven expression, and limited detail, a fair audit under the 50-point table might be: 内容 `16/20`, 表达 `14-15/20`, 特征 `7/10`, 扣分 `0-1`; 原始分约 `37-38/50`, 折算分约 `44-46/60`.
 
-If the user requests images, make a red-pen scoring/comment page or annotate the original image. For long Chinese text, avoid relying on AI image generation for exact text.
+If the user requests images, make red-pen scoring/comment pages or annotate the original images. Match the original page count: 原作文几张纸，生成的同类批注图就用几张纸，不要把多页原文缩成一张图. For long Chinese text, avoid relying on AI image generation for exact text.
 
 ### 2. 逐段修改示范版
 
@@ -102,7 +102,7 @@ When the user wants printable images/PDF, prefer deterministic programmatic layo
 
 ## Printable A4 Layout Standard
 
-For complete essay printable pages:
+For printable pages:
 
 - A4 portrait, 300 DPI.
 - Left side: wide composition grid.
@@ -112,9 +112,8 @@ For complete essay printable pages:
 - Grid line color: light ink-green/gray-green; default `RGB(135,160,145)`.
 - Keep page bright and print-ready.
 - Avoid overlap between body text, red circles/arrows, and comments.
-- Decide 2 or 3 pages by text length and readability:
-  - 600-800 Chinese characters: usually 2 pages.
-  - More comments, larger text, or longer essay: 3 pages.
+- Default page-count rule: 原作文几张纸，生成的每一类图片就用几张纸. If the student's original composition has 2 pages, produce 2 images for the scoring/annotation version, 2 images for the paragraph-revision version, and 2 images for the complete polished essay version.
+- Only change the page count when the user explicitly asks for a different layout or when the text physically cannot fit at readable size. If changed, state the reason clearly.
 
 Use `scripts/render_composition_pages.py` when a printable complete-essay PNG/PDF is needed.
 
@@ -152,6 +151,7 @@ Before final response:
 - The sum of item scores is arithmetically consistent with the raw score.
 - Paragraph revisions preserve the student's material.
 - Complete essay meets the prompt and word-count requirement.
+- Image output matches the original composition's page count unless the user explicitly requested otherwise.
 - Printable images/PDF are bright, clear, and not crowded.
 - Red comments teach methods, not just corrections.
 - Final answer lists saved paths and notes any files that could not be overwritten.
